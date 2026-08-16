@@ -47,9 +47,9 @@ except FileNotFoundError:
 
     st.error(
         "Model files not found. Make sure these files are in the same "
-        "folder as app.py:\n\n"
-        "- delivery_time_xgb.pkl\n"
-        "- model_features.pkl"
+        "folder as appy.py:\n\n"
+         "- xgb_model.pkl\n"
+         "- xgb_features.pkl"
     )
 
     st.stop()
