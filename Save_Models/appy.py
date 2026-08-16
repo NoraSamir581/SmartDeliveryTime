@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import joblib
+import joblib
+import os
 
-
-# =========================
 # Page Configuration
 # =========================
 
@@ -29,15 +29,18 @@ st.write(
 # =========================
 # Load Model
 # =========================
-
 @st.cache_resource
 def load_model_artifacts():
 
-    model = joblib.load("xgb_model.pkl")
-    feature_columns = joblib.load("xgb_features.pkl")
+    folder = os.path.dirname(os.path.abspath(__file__))
+
+    model_path = os.path.join(folder, "xgb_model.pkl")
+    features_path = os.path.join(folder, "xgb_features.pkl")
+
+    model = joblib.load(model_path)
+    feature_columns = joblib.load(features_path)
 
     return model, feature_columns
-
 
 try:
 
@@ -48,8 +51,8 @@ except FileNotFoundError:
     st.error(
         "Model files not found. Make sure these files are in the same "
         "folder as appy.py:\n\n"
-         "- xgb_model.pkl\n"
-         "- xgb_features.pkl"
+        "- xgb_model.pkl\n"
+        "- xgb_features.pkl"
     )
 
     st.stop()
